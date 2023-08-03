@@ -1,0 +1,32 @@
+{
+	"schemaVersion": 1,
+	"id": "screenshottowebhook",
+	"version": "${version}",
+	"name": "Screenshot to Webhook",
+	"description": "Uploads screenshots taken to a configured webhook server",
+	"authors": [
+		"comp500"
+	],
+	"contact": {
+		"repo": "https://github.com/comp500/ScreenshotToWebhook"
+	},
+	"license": "MIT",
+	"environment": "client",
+	"entrypoints": {
+		"client": [
+			"link.infra.screenshottowebhook.ScreenshotToWebhook"
+		],
+		"preLaunch": [
+			"link.infra.screenshottowebhook.ScreenshotToWebhookPrelaunch"
+		]
+	},
+	"mixins": [
+		"screenshottowebhook.mixins.json"
+	],
+	"depends": {
+		"fabricloader": ">=${loader_version}",
+		"fabric-resource-loader-v0": "*",
+		"fabric-command-api-v2": ">=2.2.12",
+		"minecraft": "${minecraft_version}"
+	}
+}

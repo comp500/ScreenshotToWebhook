@@ -1,0 +1,14 @@
+{
+	"screenshot.screenshottowebhook.upload": "[Upload to %s]",
+	"screenshot.screenshottowebhook.notfound": "Failed to upload screenshot: %s does not exist",
+	"screenshot.screenshottowebhook.autoupload": "[Always upload]",
+	"screenshot.screenshottowebhook.stopautoupload": "[Stop auto-uploading]",
+	"screenshot.screenshottowebhook.autouploadenabled": "Screenshots are now being automatically uploaded to %s!",
+	"screenshot.screenshottowebhook.autouploaddisabled": "Screenshots are no longer being automatically uploaded to %s",
+	"screenshot.screenshottowebhook.uploaddone": "Screenshot uploaded to %s",
+	"screenshot.screenshottowebhook.uploadingto": "Uploading to %s",
+	"screenshot.screenshottowebhook.failedcode": "Failed to upload screenshot: unexpected HTTP status code %s",
+	"screenshot.screenshottowebhook.failed": "Failed to upload screenshot: %s",
+	"screenshot.screenshottowebhook.failedvalidpath": "Failed to upload screenshot: path was not seen as a previous screenshot (must be taken in this game session)",
+	"screenshot.screenshottowebhook.retry": "[Retry]"
+}

@@ -51,7 +51,7 @@ public class ScreenshotToWebhook implements ClientModInitializer {
 		String contentType = URLConnection.getFileNameMap().getContentTypeFor(filename);
 		HttpRequest req;
 		try {
-			req = HttpRequest.newBuilder()
+			var builder = HttpRequest.newBuilder()
 				.POST(HttpRequest.BodyPublishers.concat(
 					HttpRequest.BodyPublishers.ofString("--" + boundary + "\r\n" +
 						"Content-Disposition: form-data; name=\"screenshot\"; filename=\"" + filename + "\"\r\n" +
@@ -62,7 +62,11 @@ public class ScreenshotToWebhook implements ClientModInitializer {
 				))
 				.header("Content-Type", "multipart/form-data; boundary=" + boundary)
 				.header("User-Agent", "ScreenshotToWebhook/1.0.0")
-				.uri(Config.INSTANCE.webhookUrl).build();
+				.uri(Config.INSTANCE.webhookUrl);
+			if (Config.INSTANCE.token != null && !Config.INSTANCE.token.isBlank()) {
+				builder.header("Authorization", "Bearer " + Config.INSTANCE.token);
+			}
+			req = builder.build();
 		} catch (FileNotFoundException ex) {
 			addChatMessage(Component.translatable("screenshot.screenshottowebhook.notfound", screenshotPath.toString()).withStyle(ChatFormatting.RED));
 			return false;

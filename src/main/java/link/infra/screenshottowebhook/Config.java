@@ -12,6 +12,7 @@ public class Config {
 	public final String destination;
 	public final URI webhookUrl;
 	public final String webhookHost;
+	public final String token;
 
 	public Config() {
 		Properties props = new Properties();
@@ -27,5 +28,6 @@ public class Config {
 			throw new RuntimeException("Failed to parse webhook URL", ex);
 		}
 		webhookHost = webhookUrl.getHost();
+		token = props.getProperty("token");
 	}
 }

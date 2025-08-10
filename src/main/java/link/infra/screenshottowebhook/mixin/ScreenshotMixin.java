@@ -18,12 +18,12 @@ import java.util.function.Consumer;
 
 @Mixin(Screenshot.class)
 public class ScreenshotMixin {
-	@Inject(method = "method_1661", at = @At("HEAD"))
+	@Inject(method = "method_22691", at = @At("HEAD"))
 	private static void screenshottowebhook_captureScreenshotPath(NativeImage nativeImage, File file, Consumer<Component> consumer, CallbackInfo ci, @Share("file") LocalRef<File> fileShare) {
 		fileShare.set(file);
 	}
 
-	@ModifyExpressionValue(method = "method_1661",
+	@ModifyExpressionValue(method = "method_22691",
 		at = @At(value = "INVOKE", target = "Lnet/minecraft/network/chat/Component;translatable(Ljava/lang/String;[Ljava/lang/Object;)Lnet/minecraft/network/chat/MutableComponent;"))
 	private static MutableComponent screenshottowebhook_screenshotSaveMessage(MutableComponent existingMessage, @Share("file") LocalRef<File> fileShare) {
 		return ScreenshotToWebhook.handleScreenshotSaveMessage(existingMessage, fileShare.get());

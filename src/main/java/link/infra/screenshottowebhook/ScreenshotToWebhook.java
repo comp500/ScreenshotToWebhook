@@ -34,7 +34,7 @@ public class ScreenshotToWebhook implements ClientModInitializer {
 
 	private static void addChatMessage(Component component) {
 		client.gui.getChat().addMessage(component);
-		client.getNarrator().sayNow(component);
+		client.getNarrator().saySystemNow(component);
 	}
 
 	private static void printUploadAutomaticallyStatus() {
@@ -78,21 +78,20 @@ public class ScreenshotToWebhook implements ClientModInitializer {
 					MutableComponent autoUploadText;
 					if (uploadAutomatically) {
 						autoUploadText = Component.translatable("screenshot.screenshottowebhook.stopautoupload").withStyle(s -> s
-							.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/screenshottowebhook:autoupload false")));
+							.withClickEvent(new ClickEvent.RunCommand("/screenshottowebhook:autoupload false")));
 					} else {
 						autoUploadText = Component.translatable("screenshot.screenshottowebhook.autoupload").withStyle(s -> s
-							.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/screenshottowebhook:autoupload true")));
+							.withClickEvent(new ClickEvent.RunCommand("/screenshottowebhook:autoupload true")));
 					}
 					return Component.translatable("screenshot.screenshottowebhook.uploaddone", Config.INSTANCE.destination)
 						.append(" ").append(autoUploadText.withStyle(ChatFormatting.GOLD))
-						.withStyle(s -> s.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT,
-							Component.translatable("screenshot.screenshottowebhook.uploadingto", Config.INSTANCE.webhookHost))));
+						.withStyle(s -> s.withHoverEvent(new HoverEvent.ShowText(Component.translatable("screenshot.screenshottowebhook.uploadingto", Config.INSTANCE.webhookHost))));
 				} else {
 					MutableComponent retryText = Component.empty();
 					if (uploadAutomatically) {
 						retryText = Component.literal(" ").append(Component.translatable("screenshot.screenshottowebhook.retry").withStyle(s -> s
-							.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("screenshot.screenshottowebhook.uploadingto", Config.INSTANCE.webhookHost)))
-							.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/screenshottowebhook:upload " +
+							.withHoverEvent(new HoverEvent.ShowText(Component.translatable("screenshot.screenshottowebhook.uploadingto", Config.INSTANCE.webhookHost)))
+							.withClickEvent(new ClickEvent.RunCommand("/screenshottowebhook:upload " +
 									StringArgumentType.escapeIfRequired(screenshotPath.toString())))
 							.withColor(ChatFormatting.GOLD)));
 					}
@@ -118,8 +117,8 @@ public class ScreenshotToWebhook implements ClientModInitializer {
 			return existingMessage.append(" ")
 				.append(Component.translatable("screenshot.screenshottowebhook.upload", conf.destination)
 					.withStyle(s -> s
-						.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, Component.translatable("screenshot.screenshottowebhook.uploadingto", conf.webhookHost)))
-						.withClickEvent(new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/screenshottowebhook:upload " +
+						.withHoverEvent(new HoverEvent.ShowText(Component.translatable("screenshot.screenshottowebhook.uploadingto", conf.webhookHost)))
+						.withClickEvent(new ClickEvent.RunCommand("/screenshottowebhook:upload " +
 							StringArgumentType.escapeIfRequired(screenshotPath.toString())))
 						.withColor(ChatFormatting.GOLD))
 				);
